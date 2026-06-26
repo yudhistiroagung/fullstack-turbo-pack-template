@@ -1,0 +1,47 @@
+
+> @repo/web@0.0.0 lint /Users/yudhistiroagung/Projects/vibekeun-template/fullstack-turbo-pack-template/apps/web
+> biome lint
+
+[0m/Users/yudhistiroagung/Projects/vibekeun-template/fullstack-turbo-pack-template/apps/web/src/main.tsx[0m[0m:[0m[0m6[0m[0m:[0m[0m21[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/no-non-null-assertion\lint/style/noNonNullAssertion]8;;\[0m[0m [0m[0m━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mForbidden non-null assertion.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m4 │ [0m[0mi[0m[0mm[0m[0mp[0m[0mo[0m[0mr[0m[0mt[0m[0m [0m[0m'[0m[0m.[0m[0m/[0m[0mi[0m[0mn[0m[0md[0m[0me[0m[0mx[0m[0m.[0m[0mc[0m[0ms[0m[0ms[0m[0m'[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m5 │ [0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m6 │ [0m[0mR[0m[0me[0m[0ma[0m[0mc[0m[0mt[0m[0mD[0m[0mO[0m[0mM[0m[0m.[0m[0mc[0m[0mr[0m[0me[0m[0ma[0m[0mt[0m[0me[0m[0mR[0m[0mo[0m[0mo[0m[0mt[0m[0m([0m[0md[0m[0mo[0m[0mc[0m[0mu[0m[0mm[0m[0me[0m[0mn[0m[0mt[0m[0m.[0m[0mg[0m[0me[0m[0mt[0m[0mE[0m[0ml[0m[0me[0m[0mm[0m[0me[0m[0mn[0m[0mt[0m[0mB[0m[0my[0m[0mI[0m[0md[0m[0m([0m[0m'[0m[0mr[0m[0mo[0m[0mo[0m[0mt[0m[0m'[0m[0m)[0m[0m![0m[0m)[0m[0m.[0m[0mr[0m[0me[0m[0mn[0m[0md[0m[0me[0m[0mr[0m[0m([0m[0m
+[0m[0m  [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m7 │ [0m[0m [0m[0m [0m[0m<[0m[0mR[0m[0me[0m[0ma[0m[0mc[0m[0mt[0m[0m.[0m[0mS[0m[0mt[0m[0mr[0m[0mi[0m[0mc[0m[0mt[0m[0mM[0m[0mo[0m[0md[0m[0me[0m[0m>[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m8 │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m<[0m[0mA[0m[0mp[0m[0mp[0m[0m [0m[0m/[0m[0m>[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0m/Users/yudhistiroagung/Projects/vibekeun-template/fullstack-turbo-pack-template/apps/web/vite.config.ts[0m[0m:[0m[0m3[0m[0m:[0m[0m18[0m[0m [0m[0m]8;;https://biomejs.dev/linter/rules/use-nodejs-import-protocol\lint/style/useNodejsImportProtocol]8;;\[0m[0m [0m[0m[30m[47m FIXABLE [0m[0m [0m[0m━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mA Node.js builtin module should be imported with the [0m[0m[1m[31mnode:[0m[0m[31m protocol.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m1 │ [0m[0mi[0m[0mm[0m[0mp[0m[0mo[0m[0mr[0m[0mt[0m[0m [0m[0m{[0m[0m [0m[0md[0m[0me[0m[0mf[0m[0mi[0m[0mn[0m[0me[0m[0mC[0m[0mo[0m[0mn[0m[0mf[0m[0mi[0m[0mg[0m[0m [0m[0m}[0m[0m [0m[0mf[0m[0mr[0m[0mo[0m[0mm[0m[0m [0m[0m'[0m[0mv[0m[0mi[0m[0mt[0m[0me[0m[0m'[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m2 │ [0m[0mi[0m[0mm[0m[0mp[0m[0mo[0m[0mr[0m[0mt[0m[0m [0m[0mr[0m[0me[0m[0ma[0m[0mc[0m[0mt[0m[0m [0m[0mf[0m[0mr[0m[0mo[0m[0mm[0m[0m [0m[0m'[0m[0m@[0m[0mv[0m[0mi[0m[0mt[0m[0me[0m[0mj[0m[0ms[0m[0m/[0m[0mp[0m[0ml[0m[0mu[0m[0mg[0m[0mi[0m[0mn[0m[0m-[0m[0mr[0m[0me[0m[0ma[0m[0mc[0m[0mt[0m[0m'[0m[0m
+[0m[0m  [0m[0m[1m[31m>[0m[0m [0m[0m[1m3 │ [0m[0mi[0m[0mm[0m[0mp[0m[0mo[0m[0mr[0m[0mt[0m[0m [0m[0mp[0m[0ma[0m[0mt[0m[0mh[0m[0m [0m[0mf[0m[0mr[0m[0mo[0m[0mm[0m[0m [0m[0m'[0m[0mp[0m[0ma[0m[0mt[0m[0mh[0m[0m'[0m[0m
+[0m[0m  [0m[0m [0m[0m[1m   │ [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m [0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m[1m[31m^[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m4 │ [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m5 │ [0m[0m/[0m[0m/[0m[0m [0m[0mh[0m[0mt[0m[0mt[0m[0mp[0m[0ms[0m[0m:[0m[0m/[0m[0m/[0m[0mv[0m[0mi[0m[0mt[0m[0me[0m[0mj[0m[0ms[0m[0m.[0m[0md[0m[0me[0m[0mv[0m[0m/[0m[0mc[0m[0mo[0m[0mn[0m[0mf[0m[0mi[0m[0mg[0m[0m/[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mUsing the [0m[0m[1m[34mnode:[0m[0m[34m protocol is more explicit and signals that the imported module belongs to Node.js.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m[1m[34mℹ[0m[0m [0m[0m[34mUnsafe fix: Add the [0m[0m[1m[34mnode:[0m[0m[34m protocol.[0m[0m
+[0m[0m  [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m 1[0m[0m [0m[0m[1m 1[0m[0m[1m │ [0m[0m [0m[0m [0m[0mi[0m[0mm[0m[0mp[0m[0mo[0m[0mr[0m[0mt[0m[0m [0m[0m{[0m[0m [0m[0md[0m[0me[0m[0mf[0m[0mi[0m[0mn[0m[0me[0m[0mC[0m[0mo[0m[0mn[0m[0mf[0m[0mi[0m[0mg[0m[0m [0m[0m}[0m[0m [0m[0mf[0m[0mr[0m[0mo[0m[0mm[0m[0m [0m[0m'[0m[0mv[0m[0mi[0m[0mt[0m[0me[0m[0m'[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m 2[0m[0m [0m[0m[1m 2[0m[0m[1m │ [0m[0m [0m[0m [0m[0mi[0m[0mm[0m[0mp[0m[0mo[0m[0mr[0m[0mt[0m[0m [0m[0mr[0m[0me[0m[0ma[0m[0mc[0m[0mt[0m[0m [0m[0mf[0m[0mr[0m[0mo[0m[0mm[0m[0m [0m[0m'[0m[0m@[0m[0mv[0m[0mi[0m[0mt[0m[0me[0m[0mj[0m[0ms[0m[0m/[0m[0mp[0m[0ml[0m[0mu[0m[0mg[0m[0mi[0m[0mn[0m[0m-[0m[0mr[0m[0me[0m[0ma[0m[0mc[0m[0mt[0m[0m'[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m 3[0m[0m [0m[0m [0m[0m [0m[0m[1m │ [0m[0m[31m-[0m[0m [0m[0m[31mi[0m[0m[31mm[0m[0m[31mp[0m[0m[31mo[0m[0m[31mr[0m[0m[31mt[0m[0m[2m[31m·[0m[0m[31mp[0m[0m[31ma[0m[0m[31mt[0m[0m[31mh[0m[0m[2m[31m·[0m[0m[31mf[0m[0m[31mr[0m[0m[31mo[0m[0m[31mm[0m[0m[2m[31m·[0m[0m[31m'[0m[0m[1m[31mp[0m[0m[1m[31ma[0m[0m[1m[31mt[0m[0m[1m[31mh[0m[0m[31m'[0m[0m
+[0m[0m  [0m[0m  [0m[0m [0m[0m [0m[0m [0m[0m[1m 3[0m[0m[1m │ [0m[0m[32m+[0m[0m [0m[0m[32mi[0m[0m[32mm[0m[0m[32mp[0m[0m[32mo[0m[0m[32mr[0m[0m[32mt[0m[0m[2m[32m·[0m[0m[32mp[0m[0m[32ma[0m[0m[32mt[0m[0m[32mh[0m[0m[2m[32m·[0m[0m[32mf[0m[0m[32mr[0m[0m[32mo[0m[0m[32mm[0m[0m[2m[32m·[0m[0m[32m'[0m[0m[1m[32mn[0m[0m[1m[32mo[0m[0m[1m[32md[0m[0m[1m[32me[0m[0m[1m[32m:[0m[0m[1m[32mp[0m[0m[1m[32ma[0m[0m[1m[32mt[0m[0m[1m[32mh[0m[0m[32m'[0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m 4[0m[0m [0m[0m[1m 4[0m[0m[1m │ [0m[0m [0m[0m [0m[0m
+[0m[0m  [0m[0m  [0m[0m[1m 5[0m[0m [0m[0m[1m 5[0m[0m[1m │ [0m[0m [0m[0m [0m[0m/[0m[0m/[0m[0m [0m[0mh[0m[0mt[0m[0mt[0m[0mp[0m[0ms[0m[0m:[0m[0m/[0m[0m/[0m[0mv[0m[0mi[0m[0mt[0m[0me[0m[0mj[0m[0ms[0m[0m.[0m[0md[0m[0me[0m[0mv[0m[0m/[0m[0mc[0m[0mo[0m[0mn[0m[0mf[0m[0mi[0m[0mg[0m[0m/[0m[0m
+[0m[0m  [0m[0m
+[0m
+[0m[34mChecked [0m[0m[34m12[0m[0m[34m [0m[0m[34mfiles[0m[0m[34m in [0m[0m[34m8[0m[0m[2m[34mms[0m[0m[34m.[0m[0m[34m No fixes applied.[0m[0m
+[0m[0m[31mFound [0m[0m[31m2[0m[0m[31m errors.[0m
+[0mlint[0m[0m [0m[0m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[0m
+
+[0m[0m  [0m[0m[1m[31m✖[0m[0m [0m[0m[31mSome [0m[0m[1m[31merrors[0m[0m[31m were emitted while [0m[0m[1m[31mrunning checks[0m[0m[31m.[0m[0m
+[0m[0m  [0m[0m
+[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m
