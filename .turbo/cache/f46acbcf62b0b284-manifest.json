@@ -1,1 +1,11 @@
-{"files":{"packages/shared-utils/.turbo/turbo-lint.log":{"size":318,"mtime_nanos":1782476326338365431,"mode":420,"is_dir":false}},"order":["packages/shared-utils/.turbo/turbo-lint.log"]}
+{
+  "files": {
+    "packages/shared-utils/.turbo/turbo-lint.log": {
+      "size": 318,
+      "mtime_nanos": 1782476326338365431,
+      "mode": 420,
+      "is_dir": false
+    }
+  },
+  "order": ["packages/shared-utils/.turbo/turbo-lint.log"]
+}
