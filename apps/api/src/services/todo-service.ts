@@ -1,3 +1,13 @@
+import { TodoRepository } from "../repositories/todo-repository";
+
 export class TodoService {
-  constructor(private readonly options: any) {}
+  private readonly repository: TodoRepository;
+
+  constructor(private readonly options: any) {
+    this.repository = options.repository;
+  }
+
+  async getTodos() {
+    return this.repository.getTodos();
+  }
 }

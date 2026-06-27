@@ -1,5 +1,9 @@
 import { Context } from 'hono';
 
-export const getTodoHandler = (c: Context) => {
-  return c.json({ todos: [] });
+export const getTodoHandler = async (c: Context) => {
+  const todoService = c.get('todoService');
+
+  const todos = await todoService.getTodos();
+
+  return c.json({ todos });
 };

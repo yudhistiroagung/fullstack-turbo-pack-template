@@ -3,6 +3,7 @@ import { createMiddleware } from "hono/factory";
 import config from '../config';
 import { getDB } from '../db/mongo-db';
 import { TodoRepository } from '../repositories/todo-repository';
+import { TodoService } from "../services/todo-service";
 
 export const injectMiddleware = createMiddleware(async (c, next) => {
     const db = getDB();
@@ -16,10 +17,14 @@ export const injectMiddleware = createMiddleware(async (c, next) => {
     });
 
     /* repositories factory */
+    const todoService = new TodoService({
+        repository: todoRepository,
+    });
 
     c.set('todoCollection', todoCollection);
     c.set('todoRepository', todoRepository);
-    next();
+    c.set('todoService', todoService);
+    await next();
 });
 
 export default injectMiddleware;
