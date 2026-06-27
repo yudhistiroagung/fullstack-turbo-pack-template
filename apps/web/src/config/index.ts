@@ -20,6 +20,6 @@ const getInt = (key: string) => {
 
 const config = {
   appTitle: getString('VITE_APP_TITLE'),
-  appVersion: getInt('VITE_APP_VERSION'),
+  appVersion: getString('VITE_APP_VERSION'),
   apiUrl: getString('VITE_API_URL'),
 };

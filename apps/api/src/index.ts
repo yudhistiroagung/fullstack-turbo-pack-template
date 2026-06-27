@@ -1,36 +1,40 @@
 import { Hono } from 'hono';
-import { MongoClient } from 'mongodb';
 
-const app = new Hono();
+import { connectDB } from './db/mongo-db';
+import config from './config';
+import middleware from './middleware';
+import routes from './routes';
 
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017';
-const client = new MongoClient(mongoUri);
+import { ApiEnv } from './types';
 
-async function connectToMongo() {
-  try {
-    await client.connect();
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-  }
-}
+const port = config.port;
+const app = new Hono<ApiEnv>();
+const api = new Hono();
 
-connectToMongo();
+connectDB().then(() => {
+  app.use(...middleware);
 
-app.get('/', (c) => {
-  return c.json({
-    message: 'Hello from Hono + MongoDB!',
+  routes.forEach((r) => {
+    api.route(...r);
   });
-});
 
-app.get('/health', (c) => {
-  return c.json({
-    status: 'ok',
-    mongo: client.topology?.isConnected() ? 'connected' : 'disconnected',
+  // Set up all routes immediately
+  app.get('/', (c) => {
+    return c.json({
+      message: 'Hello from Hono + MongoDB!',
+    });
   });
-});
 
-const port = Number(process.env.PORT) || 3001;
+  app.get('/health', (c) => {
+    return c.json({
+      status: 'ok',
+    });
+  });
+
+  app.route('/api', api);
+
+  console.log(`API server running on port ${port}`);
+});
 
 export default {
   port,
