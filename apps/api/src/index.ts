@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 
 import { connectDB } from './db/mongo-db';
 import config from './config';
-import middleware from './middleware';
+import middlewares from './middlewares';
 import routes from './routes';
 
 import { ApiEnv } from './types';
@@ -12,7 +12,7 @@ const app = new Hono<ApiEnv>();
 const api = new Hono();
 
 connectDB().then(() => {
-  app.use(...middleware);
+  app.use(...middlewares);
 
   routes.forEach((r) => {
     api.route(...r);
