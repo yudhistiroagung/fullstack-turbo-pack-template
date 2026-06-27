@@ -1,4 +1,4 @@
-import { Collection } from "mongodb";
+import { Collection, ObjectId } from "mongodb";
 
 export class TodoRepository {
   collection: Collection;
@@ -9,5 +9,9 @@ export class TodoRepository {
 
   async getTodos() {
     return this.collection.find().toArray();
+  }
+
+  async getTodoById(id: string) {
+    return this.collection.findOne({ _id: new ObjectId(id) });
   }
 }
