@@ -9,7 +9,7 @@ type Injectable = {
 export class TodoRepository {
   collection: Collection;
 
-  constructor(private options: Injectable) {
+  constructor(options: Injectable) {
     this.collection = options.collection;
   }
 

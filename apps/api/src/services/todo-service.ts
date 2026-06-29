@@ -5,9 +5,9 @@ type Injectable = {
 };
 
 export class TodoService {
-  private readonly repository: TodoRepository;
+  private repository: TodoRepository;
 
-  constructor(private readonly options: Injectable) {
+  constructor(options: Injectable) {
     this.repository = options.repository;
   }
 
