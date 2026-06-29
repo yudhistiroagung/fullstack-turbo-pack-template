@@ -11,16 +11,16 @@ export class TodoService {
     this.repository = options.repository;
   }
 
-  async getTodos() {
-    return this.repository.getTodos();
+  async getTodos(userId: string) {
+    return this.repository.getTodos(userId);
   }
 
   async getTodoById(id: string) {
     return this.repository.getTodoById(id);
   }
 
-  async createTodo(name: string) {
-    return this.repository.createTodo(name);
+  async createTodo(name: string, userId: string) {
+    return this.repository.createTodo(name, userId);
   }
 
   async updateTodo(id: string, fields: Record<string, unknown>) {

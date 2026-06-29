@@ -8,7 +8,12 @@ const updateTodoSchema = z.object({
 
 export const updateTodoHandler = async (c: Context) => {
   const todoService = c.get('todoService');
+  const userId = c.get('user').id;
   const id = c.req.param('id');
+
+  if (!userId) {
+    return c.json({ error: 'Unauthorized' }, 401);
+  }
 
   if (!id) {
     return c.json({ error: 'ID is required' }, 400);
@@ -25,11 +30,13 @@ export const updateTodoHandler = async (c: Context) => {
     return c.json({ error: 'No fields to update' }, 400);
   }
 
-  const todo = await todoService.updateTodo(id, result.data);
-
-  if (!todo) {
+  // Check ownership: get the todo and verify it belongs to the user
+  const existing = await todoService.getTodoById(id);
+  if (!existing || existing.userId !== userId) {
     return c.json({ error: 'Todo not found' }, 404);
   }
+
+  const todo = await todoService.updateTodo(id, result.data);
 
   return c.json(todo);
 };

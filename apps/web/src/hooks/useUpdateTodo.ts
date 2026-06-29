@@ -1,5 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { config } from '@/config';
+import { authClient } from '@/lib/auth-client';
+
 import type { Todo } from './useTodos';
 
 interface UpdateTodoFields {
@@ -12,6 +14,7 @@ async function updateTodo(id: string, fields: UpdateTodoFields): Promise<Todo> {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(fields),
+    credentials: 'include',
   });
   if (!res.ok) throw new Error('Failed to update todo');
   return res.json();
@@ -19,15 +22,17 @@ async function updateTodo(id: string, fields: UpdateTodoFields): Promise<Todo> {
 
 export function useUpdateTodo() {
   const queryClient = useQueryClient();
+  const { data: session } = authClient.useSession();
+  const userId = session?.user?.id;
 
   return useMutation({
     mutationFn: ({ id, fields }: { id: string; fields: UpdateTodoFields }) =>
       updateTodo(id, fields),
     onMutate: async ({ id, fields }) => {
-      await queryClient.cancelQueries({ queryKey: ['todos'] });
-      const previousTodos = queryClient.getQueryData<Todo[]>(['todos']);
+      await queryClient.cancelQueries({ queryKey: ['todos', userId] });
+      const previousTodos = queryClient.getQueryData<Todo[]>(['todos', userId]);
 
-      queryClient.setQueryData<Todo[]>(['todos'], (old) =>
+      queryClient.setQueryData<Todo[]>(['todos', userId], (old) =>
         old?.map((todo) =>
           todo._id === id ? { ...todo, ...fields } : todo,
         ),
@@ -37,11 +42,11 @@ export function useUpdateTodo() {
     },
     onError: (_err, _vars, context) => {
       if (context?.previousTodos) {
-        queryClient.setQueryData(['todos'], context.previousTodos);
+        queryClient.setQueryData(['todos', userId], context.previousTodos);
       }
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['todos'] });
+      queryClient.invalidateQueries({ queryKey: ['todos', userId] });
     },
   });
 }

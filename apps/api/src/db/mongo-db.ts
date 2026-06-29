@@ -6,10 +6,17 @@ const mongoURI = `mongodb://${config.mongoDb.username}:${config.mongoDb.password
 export const client = new MongoClient(mongoURI);
 let db: ReturnType<typeof client.db>;
 
+const createIndex = async (collection: string) => {
+  await db.collection(collection).createIndex({ userId: 1 });
+};
+
 export const connectDB = async () => {
   await client.connect();
   console.log('Connected to MongoDB');
   db = client.db(config.mongoDb.name);
+  
+  await createIndex(config.collections.todos);
+
   return { db, client };
 };
 

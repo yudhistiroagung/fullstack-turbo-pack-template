@@ -3,30 +3,39 @@ import { Hono } from 'hono';
 import { connectDB } from './db/mongo-db';
 import config from './config';
 import middlewares from './middlewares';
-import betterAuthHandler from './middlewares/auth-middleware';
+import betterAuthHandler, { authMiddleware } from './middlewares/auth-middleware';
 import routes from './routes';
 
 import type { ApiEnv } from './types';
+import { createAuth } from './lib/auth';
 
 const port = config.port;
 const app = new Hono<ApiEnv>();
 const api = new Hono();
 
 connectDB().then(({ db, client }) => {
-  app.use(...middlewares.preMiddlewares);
-  betterAuthHandler(app, db, client);
+  const auth = createAuth(db, client);
 
+  // Apply authMiddleware to all routes
+  app.use(...middlewares.preMiddlewares);
+
+  // specific for auth middlewares
+  app.use(authMiddleware(auth));
+  betterAuthHandler(app, auth);
+
+  // all routes
   for (const route of routes) {
     api.route(...route);
   }
 
-  // Set up all routes immediately
+  // default root
   app.get('/', (c) => {
     return c.json({
-      message: 'Hello from Hono + MongoDB!',
+      message: 'Hello',
     });
   });
 
+  // health check
   app.get('/health', (c) => {
     return c.json({
       status: 'ok',

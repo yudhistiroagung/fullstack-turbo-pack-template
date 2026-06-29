@@ -1,37 +1,31 @@
 import { cors } from 'hono/cors';
+import { createMiddleware } from 'hono/factory';
 
-import type { Db, MongoClient } from 'mongodb';
-import type { Context, Hono } from 'hono';
-import type { Auth } from 'better-auth';
+import type { Hono } from 'hono';
+import type { Auth } from '../lib/auth';
 
 import config from '../config';
-import { createAuth } from '../lib/auth';
 
 import type { ApiEnv } from '../types';
 
-// CORS for Better Auth endpoints
-export const betterAuthEndpoint = () => [
-  '/api/auth/*',
-  cors({
-    origin: config.corsOrigin,
-    allowHeaders: ['Content-Type', 'Authorization'],
-    allowMethods: ['POST', 'GET', 'OPTIONS'],
-    exposeHeaders: ['Content-Length'],
-    maxAge: 600,
-    credentials: true,
-  }),
-];
+// Middleware that protects routes by requiring a valid Better Auth session
+export const authMiddleware= (auth: Auth) => createMiddleware<ApiEnv>(async (c, next) => {
+  if (c.req.path.startsWith('/api/auth')) {
+    await next()
+    return;
+  }
 
-// Mount Better Auth handler
-export const betterAuthHandler = (auth: Auth) => [
-  ['POST', 'GET'],
-  (c: Context) => auth.handler(c.req.raw),
-];
+  const session = await auth?.api?.getSession({ headers: c.req.raw.headers });
 
-export default async (app: Hono<ApiEnv>, db: Db, client: MongoClient) => {
-  // Create Better Auth instance with MongoDB adapter
-  const auth = createAuth(db, client);
+  if (session && session.user) {
+    c.set('user', session.user);
+    return await next();
+  }
 
+  return c.json({ error: 'Unauthorized' }, 401);
+});
+
+export default async (app: Hono<ApiEnv>, auth: Auth) => {
   // CORS for Better Auth endpoints
   app.use(
     '/api/auth/*',
@@ -47,4 +41,6 @@ export default async (app: Hono<ApiEnv>, db: Db, client: MongoClient) => {
 
   // Mount Better Auth handler
   app.on(['POST', 'GET'], '/api/auth/*', (c) => auth.handler(c.req.raw));
+
+  return auth;
 };
