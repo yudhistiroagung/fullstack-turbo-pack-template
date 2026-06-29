@@ -18,7 +18,7 @@ const getInt = (key: string) => {
   throw new Error(`VITE_${key} is not a number`);
 };
 
-const config = {
+export const config = {
   appTitle: getString('VITE_APP_TITLE'),
   appVersion: getString('VITE_APP_VERSION'),
   apiUrl: getString('VITE_API_URL'),

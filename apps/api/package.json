@@ -11,6 +11,7 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "better-auth": "^1.6.22",
     "hono": "^4.7.4",
     "mongodb": "^6.13.1"
   },

@@ -10,7 +10,7 @@ const getString = (key: string) => {
 };
 
 const getInt = (key: string) => {
-  const value = parseInt(ENV[key] as any);
+  const value = parseInt(ENV[key] as string, 10);
   if (typeof value === 'number') {
     return value;
   }
@@ -29,5 +29,9 @@ export default {
   },
   collections: {
     todos: getString('MONGODB_COLLECTION_TODO'),
-  }
+  },
+  corsOrigin: getString('CORS_ORIGIN').split(','),
+  googleClientId: getString('GOOGLE_CLIENT_ID'),
+  googleClientSecret: getString('GOOGLE_CLIENT_SECRET'),
+  betterAuthUrl: getString('BETTER_AUTH_URL'),
 } as const;

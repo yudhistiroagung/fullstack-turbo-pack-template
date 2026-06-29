@@ -1,9 +1,13 @@
-import { Collection } from "mongodb";
+import type { Collection } from "mongodb";
+
+type Injectable = {
+  collection: Collection;
+}
 
 export class TodoRepository {
   collection: Collection;
 
-  constructor(private options: any) {
+  constructor(private options: Injectable) {
     this.collection = options.collection;
   }
 
