@@ -1,4 +1,4 @@
-import type { Collection } from "mongodb";
+import { Collection, ObjectId } from "mongodb";
 
 type Injectable = {
   collection: Collection;
@@ -13,5 +13,9 @@ export class TodoRepository {
 
   async getTodos() {
     return this.collection.find().toArray();
+  }
+
+  async getTodoById(id: string) {
+    return this.collection.findOne({ _id: new ObjectId(id) });
   }
 }
