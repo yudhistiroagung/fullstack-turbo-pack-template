@@ -1,12 +1,11 @@
+import { z } from 'zod';
 import type { Context } from 'hono';
+
+export const getTodosQuerySchema = z.object({});
 
 export const getTodoHandler = async (c: Context) => {
   const todoService = c.get('todoService');
   const userId = c.get('user').id;
-
-  if (!userId) {
-    return c.json({ error: 'Unauthorized' }, 401);
-  }
 
   const todos = await todoService.getTodos(userId);
 

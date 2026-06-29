@@ -1,12 +1,13 @@
+import { z } from 'zod';
 import type { Context } from 'hono';
+
+export const getTodoByIdParamSchema = z.object({
+  id: z.string().min(1, 'ID is required'),
+});
 
 export const getTodoByIdHandler = async (c: Context) => {
   const todoService = c.get('todoService');
   const id = c.req.param('id');
-
-  if (!id) {
-    return c.json({ error: 'ID is required' }, 400);
-  }
 
   const todo = await todoService.getTodoById(id);
 
