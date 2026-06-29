@@ -1,8 +1,8 @@
-import { betterAuth } from "better-auth";
-import { mongodbAdapter } from "better-auth/adapters/mongodb";
-import type { Db, MongoClient } from "mongodb";
+import { betterAuth } from 'better-auth';
+import { mongodbAdapter } from 'better-auth/adapters/mongodb';
+import type { Db, MongoClient } from 'mongodb';
 
-import config from "../config";
+import config from '../config';
 
 export const createAuth = (db: Db, client: MongoClient) => {
   return betterAuth({

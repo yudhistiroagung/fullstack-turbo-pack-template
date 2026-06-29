@@ -1,11 +1,11 @@
-import { createMiddleware } from "hono/factory";
+import { createMiddleware } from 'hono/factory';
 
 import config from '../config';
 import { getDB } from '../db/mongo-db';
 import { TodoRepository } from '../repositories/todo-repository';
-import { TodoService } from "../services/todo-service";
+import { TodoService } from '../services/todo-service';
 
-export const injectMiddleware = createMiddleware(async (c, next) => {
+const injectMiddleware = createMiddleware(async (c, next) => {
     const db = getDB();
 
     /* collections factory */

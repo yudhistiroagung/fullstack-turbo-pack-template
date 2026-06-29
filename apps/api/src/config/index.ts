@@ -10,7 +10,7 @@ const getString = (key: string) => {
 };
 
 const getInt = (key: string) => {
-  const value = parseInt(ENV[key] as string, 10);
+  const value = Number.parseInt(ENV[key] as string, 10);
   if (typeof value === 'number') {
     return value;
   }

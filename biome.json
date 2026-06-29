@@ -25,6 +25,11 @@
     }
   },
   "files": {
-    "ignore": ["node_modules", "dist", ".next", "pnpm-lock.yaml"]
+    "ignore": [
+      "node_modules",
+      "dist",
+      ".next",
+      "pnpm-lock.yaml",
+      "**/routeTree.gen.ts"]
   }
 }
