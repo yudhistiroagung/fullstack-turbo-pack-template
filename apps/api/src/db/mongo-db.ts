@@ -18,4 +18,4 @@ export const getDB = () => {
     throw new Error('MongoDB not connected');
   }
   return db;
-}
+};

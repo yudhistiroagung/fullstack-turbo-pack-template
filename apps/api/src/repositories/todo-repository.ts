@@ -1,8 +1,10 @@
-import { Collection, ObjectId } from "mongodb";
+import { ObjectId } from 'mongodb';
+
+import type { Collection } from 'mongodb';
 
 type Injectable = {
   collection: Collection;
-}
+};
 
 export class TodoRepository {
   collection: Collection;

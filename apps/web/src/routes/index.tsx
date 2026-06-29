@@ -1,8 +1,8 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { authClient } from "@/lib/auth-client";
-import { Button } from "@/components/ui/button";
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { authClient } from '@/lib/auth-client';
+import { Button } from '@/components/ui/button';
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/')({
   component: Index,
 });
 
@@ -12,10 +12,10 @@ function Index() {
 
   const handleLogout = async () => {
     await authClient.signOut();
-    navigate({ to: "/login" });
+    navigate({ to: '/login' });
   };
 
-  const userName = data?.user?.name ?? data?.user?.email ?? "User";
+  const userName = data?.user?.name ?? data?.user?.email ?? 'User';
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6">

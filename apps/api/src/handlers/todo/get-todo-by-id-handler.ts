@@ -1,4 +1,4 @@
-import { Context } from 'hono';
+import type { Context } from 'hono';
 
 export const getTodoByIdHandler = async (c: Context) => {
   const todoService = c.get('todoService');

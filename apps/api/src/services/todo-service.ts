@@ -1,8 +1,8 @@
-import type { TodoRepository } from "../repositories/todo-repository";
+import type { TodoRepository } from '../repositories/todo-repository';
 
 type Injectable = {
   repository: TodoRepository;
-}
+};
 
 export class TodoService {
   private readonly repository: TodoRepository;
