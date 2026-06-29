@@ -8,7 +8,7 @@ Backend API endpoints for creating a new todo via `POST /todos` and updating an 
 
 ### Requirement: Create a new todo
 
-The API SHALL provide a `POST /todos` endpoint that accepts a JSON body with a todo name and creates a new todo document in MongoDB, associated with the authenticated user. This endpoint REQUIRES a valid Better Auth session.
+The API SHALL provide a `POST /todos` endpoint that accepts a JSON body with a todo name and creates a new todo document in MongoDB, associated with the authenticated user. This endpoint REQUIRES a valid Better Auth session. Input validation SHALL be performed by Zod schema middleware before the handler executes.
 
 #### Scenario: Create todo successfully
 
@@ -33,7 +33,7 @@ The API SHALL provide a `POST /todos` endpoint that accepts a JSON body with a t
 
 ### Requirement: Update a todo
 
-The API SHALL provide a `PATCH /todos/:id` endpoint that accepts a JSON body with fields to update on an existing todo document. The todo MUST belong to the authenticated user. This endpoint REQUIRES a valid Better Auth session.
+The API SHALL provide a `PATCH /todos/:id` endpoint that accepts a JSON body with fields to update on an existing todo document. The todo MUST belong to the authenticated user. This endpoint REQUIRES a valid Better Auth session. Input validation (body and route params) SHALL be performed by Zod schema middleware before the handler executes.
 
 #### Scenario: Mark todo as done
 
