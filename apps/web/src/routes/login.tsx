@@ -39,6 +39,7 @@ function Login() {
       provider: 'google',
       callbackURL: window.location.origin,
     });
+    setLoading(false);
   };
 
   return (

@@ -30,6 +30,7 @@ export default {
   collections: {
     todos: getString('MONGODB_COLLECTION_TODO'),
   },
+  apiKey: getString('API_KEY'),
   corsOrigin: getString('CORS_ORIGIN').split(','),
   googleClientId: getString('GOOGLE_CLIENT_ID'),
   googleClientSecret: getString('GOOGLE_CLIENT_SECRET'),

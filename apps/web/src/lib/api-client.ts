@@ -7,6 +7,8 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((reqConfig) => {
+  reqConfig.headers.set('x-api-key', config.apiKey);
+
   if (['post', 'patch', 'put'].includes(reqConfig.method ?? '')) {
     reqConfig.headers.set('Content-Type', 'application/json');
   }
