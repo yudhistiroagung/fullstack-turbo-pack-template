@@ -9,7 +9,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { todoNameSchema, type TodoNameForm } from '@/lib/todo-schema';
+import { todoNameSchema, type TodoNameForm } from '@/schemas/todo-schema';
 import { useCreateTodo } from '@/hooks/useCreateTodo';
 
 interface AddTodoModalProps {
