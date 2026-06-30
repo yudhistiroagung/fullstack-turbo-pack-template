@@ -6,6 +6,10 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
+    "@repo/shared-models#build": {
+      "dependsOn": [],
+      "outputs": []
+    },
     "dev": {
       "cache": false,
       "persistent": true

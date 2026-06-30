@@ -1,0 +1,16 @@
+{
+  "name": "@repo/shared-models",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "scripts": {
+    "lint": "biome lint",
+    "format": "biome format --write"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

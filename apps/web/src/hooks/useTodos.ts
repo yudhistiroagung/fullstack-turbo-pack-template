@@ -1,15 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { config } from '@/config';
 import { authClient } from '@/lib/auth-client';
-
-export interface Todo {
-  _id: string;
-  name: string;
-  status: 'pending' | 'done';
-  userId?: string;
-  createdAt?: string;
-  updatedAt?: string;
-}
+import { TodoDTO, fromTodoDTO, type Todo } from '@repo/shared-models';
+import { z } from 'zod';
 
 async function fetchTodos(): Promise<Todo[]> {
   const res = await fetch(`${config.apiUrl}/api/todos`, {
@@ -17,7 +10,8 @@ async function fetchTodos(): Promise<Todo[]> {
   });
   if (!res.ok) throw new Error('Failed to fetch todos');
   const data = await res.json();
-  return data.todos;
+  const parsed = z.array(TodoDTO).parse(data.todos);
+  return parsed.map(fromTodoDTO);
 }
 
 export function useTodos() {

@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongodb';
 
 import type { Collection } from 'mongodb';
+import { Todo, type Todo as TodoType } from '@repo/shared-models';
 
 type Injectable = {
   collection: Collection;
@@ -13,15 +14,23 @@ export class TodoRepository {
     this.collection = options.collection;
   }
 
-  async getTodos(userId: string) {
-    return this.collection.find({ userId }).toArray();
+  private parseDoc(doc: unknown): TodoType {
+    const normalized = { ...(doc as Record<string, unknown>), _id: String((doc as Record<string, unknown>)._id) };
+    return Todo.parse(normalized);
   }
 
-  async getTodoById(id: string) {
-    return this.collection.findOne({ _id: new ObjectId(id) });
+  async getTodos(userId: string): Promise<TodoType[]> {
+    const docs = await this.collection.find({ userId }).toArray();
+    return docs.map((doc) => this.parseDoc(doc));
   }
 
-  async createTodo(name: string, userId: string) {
+  async getTodoById(id: string): Promise<TodoType | null> {
+    const doc = await this.collection.findOne({ _id: new ObjectId(id) });
+    if (!doc) return null;
+    return this.parseDoc(doc);
+  }
+
+  async createTodo(name: string, userId: string): Promise<TodoType> {
     const result = await this.collection.insertOne({
       name,
       userId,
@@ -29,14 +38,17 @@ export class TodoRepository {
       createdAt: new Date(),
       updatedAt: new Date(),
     });
-    return this.collection.findOne({ _id: result.insertedId });
+    const doc = await this.collection.findOne({ _id: result.insertedId });
+    return this.parseDoc(doc);
   }
 
-  async updateTodo(id: string, fields: Record<string, unknown>, userId?: string) {
+  async updateTodo(id: string, fields: Record<string, unknown>, userId?: string): Promise<TodoType | null> {
     await this.collection.updateOne(
       { _id: new ObjectId(id), ...(userId ? { userId } : {}) },
       { $set: { ...fields, updatedAt: new Date() } },
     );
-    return this.collection.findOne({ _id: new ObjectId(id) });
+    const doc = await this.collection.findOne({ _id: new ObjectId(id) });
+    if (!doc) return null;
+    return this.parseDoc(doc);
   }
 }

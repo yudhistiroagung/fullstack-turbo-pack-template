@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { config } from '@/config';
 import { authClient } from '@/lib/auth-client';
-
-import type { Todo } from './useTodos';
+import { TodoDTO, fromTodoDTO, type Todo } from '@repo/shared-models';
 
 interface UpdateTodoFields {
   status?: 'pending' | 'done';
@@ -17,7 +16,9 @@ async function updateTodo(id: string, fields: UpdateTodoFields): Promise<Todo> {
     credentials: 'include',
   });
   if (!res.ok) throw new Error('Failed to update todo');
-  return res.json();
+  const data = await res.json();
+  const dto = TodoDTO.parse(data);
+  return fromTodoDTO(dto);
 }
 
 export function useUpdateTodo() {
