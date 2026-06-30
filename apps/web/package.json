@@ -16,7 +16,7 @@
     "@radix-ui/react-label": "^2.1.10",
     "@radix-ui/react-slot": "^1.1.2",
     "@repo/shared-models": "workspace:*",
-    "@repo/shared-utils": "workspace:*",
+
     "@tanstack/react-query": "^5.64.2",
     "@tanstack/react-router": "^1.100.2",
     "axios": "^1.18.1",

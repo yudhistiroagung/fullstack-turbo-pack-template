@@ -22,7 +22,7 @@ export const authMiddleware= (auth: Auth) => createMiddleware<ApiEnv>(async (c, 
     return await next();
   }
 
-  return c.json({ error: 'Unauthorized' }, 401);
+  return c.json({ error: 'Invalid or expired session' }, 401);
 });
 
 export default async (app: Hono<ApiEnv>, auth: Auth) => {

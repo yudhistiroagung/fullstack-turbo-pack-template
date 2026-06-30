@@ -7,6 +7,9 @@ import { TodoService } from '../services/todo-service';
 
 const injectMiddleware = createMiddleware(async (c, next) => {
   const db = getDB();
+  if (!db) {
+    return c.json({ error: 'Service unavailable' }, 503);
+  }
 
   /* collections factory */
   const todoCollection = db.collection(config.collections.todos);

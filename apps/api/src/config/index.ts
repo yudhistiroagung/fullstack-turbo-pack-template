@@ -10,12 +10,17 @@ const getString = (key: string) => {
 };
 
 const getInt = (key: string) => {
-  const value = Number.parseInt(ENV[key] as string, 10);
-  if (typeof value === 'number') {
-    return value;
+  const raw = ENV[key];
+  if (typeof raw !== 'string') {
+    throw new Error(`ENV ${key} is not a string`);
   }
 
-  throw new Error(`ENV ${key} is not a number`);
+  const value = Number.parseInt(raw, 10);
+  if (Number.isNaN(value)) {
+    throw new Error(`ENV ${key} is not a valid integer`);
+  }
+
+  return value;
 };
 
 export default {

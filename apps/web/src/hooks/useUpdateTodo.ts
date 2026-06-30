@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 import { TodoDTO, fromTodoDTO, type Todo } from '@repo/shared-models';
 
@@ -40,6 +41,7 @@ export function useUpdateTodo() {
       if (context?.previousTodos) {
         queryClient.setQueryData(['todos', userId], context.previousTodos);
       }
+      toast.error('Failed to update todo. Please try again.');
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['todos', userId] });

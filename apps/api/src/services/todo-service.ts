@@ -1,5 +1,6 @@
 import type { TodoRepository } from '../repositories/todo-repository';
-import type { Todo } from '@repo/shared-models';
+import type { TodoDTO, UpdateTodoDTO } from '@repo/shared-models';
+import { toTodoDTO } from '@repo/shared-models';
 
 type Injectable = {
   repository: TodoRepository;
@@ -12,19 +13,25 @@ export class TodoService {
     this.repository = options.repository;
   }
 
-  async getTodos(userId: string): Promise<Todo[]> {
-    return this.repository.getTodos(userId);
+  async getTodos(userId: string): Promise<TodoDTO[]> {
+    const todos = await this.repository.getTodos(userId);
+    return todos.map(toTodoDTO);
   }
 
-  async getTodoById(id: string): Promise<Todo | null> {
-    return this.repository.getTodoById(id);
+  async getTodoById(id: string): Promise<TodoDTO | null> {
+    const todo = await this.repository.getTodoById(id);
+    if (!todo) return null;
+    return toTodoDTO(todo);
   }
 
-  async createTodo(name: string, userId: string): Promise<Todo> {
-    return this.repository.createTodo(name, userId);
+  async createTodo(name: string, userId: string): Promise<TodoDTO> {
+    const todo = await this.repository.createTodo(name, userId);
+    return toTodoDTO(todo);
   }
 
-  async updateTodo(id: string, fields: Record<string, unknown>): Promise<Todo | null> {
-    return this.repository.updateTodo(id, fields);
+  async updateTodo(id: string, fields: UpdateTodoDTO): Promise<TodoDTO | null> {
+    const todo = await this.repository.updateTodo(id, fields);
+    if (!todo) return null;
+    return toTodoDTO(todo);
   }
 }

@@ -1,11 +1,6 @@
 import { z } from 'zod';
 import type { Context } from 'hono';
 
-export const updateTodoBodySchema = z.object({
-  name: z.string().min(1).optional(),
-  status: z.enum(['pending', 'done']).optional(),
-});
-
 export const updateTodoParamSchema = z.object({
   id: z.string().min(1, 'ID is required'),
 });

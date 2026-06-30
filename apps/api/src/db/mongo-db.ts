@@ -7,7 +7,7 @@ export const client = new MongoClient(mongoURI);
 let db: ReturnType<typeof client.db>;
 
 const createIndex = async (collection: string) => {
-  await db.collection(collection).createIndex({ userId: 1 });
+  await db!.collection(collection).createIndex({ userId: 1 });
 };
 
 export const connectDB = async () => {
@@ -21,8 +21,5 @@ export const connectDB = async () => {
 };
 
 export const getDB = () => {
-  if (!db) {
-    throw new Error('MongoDB not connected');
-  }
   return db;
 };

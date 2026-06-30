@@ -19,3 +19,9 @@ export const TodoDTO = z.object({
   updatedAt: z.string().optional(),
 });
 export type TodoDTO = z.infer<typeof TodoDTO>;
+
+export const UpdateTodoDTO = z.object({
+  name: z.string().min(1).optional(),
+  status: z.enum(['pending', 'done']).optional(),
+});
+export type UpdateTodoDTO = z.infer<typeof UpdateTodoDTO>;

@@ -1,7 +1,4 @@
-import { z } from 'zod';
 import type { Context } from 'hono';
-
-export const getTodosQuerySchema = z.object({});
 
 export const getTodoHandler = async (c: Context) => {
   const todoService = c.get('todoService');

@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 import { TodoDTO, fromTodoDTO, type Todo } from '@repo/shared-models';
 
@@ -20,6 +21,9 @@ export function useCreateTodo() {
     mutationFn: createTodo,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['todos', userId] });
+    },
+    onError: () => {
+      toast.error('Failed to create todo. Please try again.');
     },
   });
 }

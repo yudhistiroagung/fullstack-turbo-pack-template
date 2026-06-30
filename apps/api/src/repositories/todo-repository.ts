@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 
 import type { Collection } from 'mongodb';
-import { Todo, type Todo as TodoType } from '@repo/shared-models';
+import { Todo, UpdateTodoDTO, type Todo as TodoType } from '@repo/shared-models';
 
 type Injectable = {
   collection: Collection;
@@ -42,7 +42,7 @@ export class TodoRepository {
     return this.parseDoc(doc);
   }
 
-  async updateTodo(id: string, fields: Record<string, unknown>, userId?: string): Promise<TodoType | null> {
+  async updateTodo(id: string, fields: UpdateTodoDTO, userId?: string): Promise<TodoType | null> {
     await this.collection.updateOne(
       { _id: new ObjectId(id), ...(userId ? { userId } : {}) },
       { $set: { ...fields, updatedAt: new Date() } },

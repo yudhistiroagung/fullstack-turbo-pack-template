@@ -1,7 +1,6 @@
 import { z } from 'zod';
+import { Todo } from '@repo/shared-models';
 
-export const todoNameSchema = z.object({
-  name: z.string().min(1, 'Todo name is required'),
-});
+export const todoNameSchema = Todo.pick({ name: true });
 
 export type TodoNameForm = z.infer<typeof todoNameSchema>;

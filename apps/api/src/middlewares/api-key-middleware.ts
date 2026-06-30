@@ -10,7 +10,7 @@ export const apiKeyMiddleware = createMiddleware(async (c, next) => {
   const apiKey = c.req.header('x-api-key');
 
   if (!apiKey || apiKey !== config.apiKey) {
-    return c.json({ error: 'Unauthorized' }, 401);
+    return c.json({ error: 'Invalid or missing API key' }, 401);
   }
 
   await next();

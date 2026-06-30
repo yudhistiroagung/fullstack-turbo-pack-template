@@ -51,7 +51,7 @@ export function TodoTable() {
       {/* Empty state */}
       {(!todos || todos.length === 0) && (
         <div className="flex flex-col items-center justify-center gap-4 py-16">
-          <p className="text-lg text-muted-foreground">no todo yet</p>
+          <p className="text-lg text-muted-foreground">No todos yet. Add your first one!</p>
           <Button onClick={() => setModalOpen(true)}>Add Todo</Button>
         </div>
       )}

@@ -7,9 +7,14 @@ export const getTodoByIdParamSchema = z.object({
 
 export const getTodoByIdHandler = async (c: Context) => {
   const todoService = c.get('todoService');
+  const userId = c.get('user').id;
   const id = c.req.param('id');
 
   const todo = await todoService.getTodoById(id);
+
+  if (!todo || todo.userId !== userId) {
+    return c.json({ error: 'Todo not found' }, 404);
+  }
 
   return c.json(todo);
 };
