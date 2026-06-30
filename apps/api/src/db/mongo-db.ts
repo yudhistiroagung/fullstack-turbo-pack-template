@@ -4,10 +4,12 @@ import config from '../config';
 const mongoURI = `mongodb://${config.mongoDb.username}:${config.mongoDb.password}@${config.mongoDb.url}/${config.mongoDb.name}?authSource=${config.mongoDb.username}`;
 
 export const client = new MongoClient(mongoURI);
-let db: ReturnType<typeof client.db>;
+export type AppDatabase = ReturnType<typeof client.db>;
 
-const createIndex = async (collection: string) => {
-  await db!.collection(collection).createIndex({ userId: 1 });
+let db: AppDatabase;
+
+const createIndex = async (database: AppDatabase, collection: string) => {
+  await database.collection(collection).createIndex({ userId: 1 });
 };
 
 export const connectDB = async () => {
@@ -15,7 +17,7 @@ export const connectDB = async () => {
   console.log('Connected to MongoDB');
   db = client.db(config.mongoDb.name);
   
-  await createIndex(config.collections.todos);
+  await createIndex(db, config.collections.todos);
 
   return { db, client };
 };
