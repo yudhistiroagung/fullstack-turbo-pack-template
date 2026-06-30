@@ -10,9 +10,9 @@ export const getTodoByIdHandler = async (c: Context) => {
   const userId = c.get('user').id;
   const id = c.req.param('id');
 
-  const todo = await todoService.getTodoById(id);
+  const todo = await todoService.getTodoById(id, userId);
 
-  if (!todo || todo.userId !== userId) {
+  if (!todo) {
     return c.json({ error: 'Todo not found' }, 404);
   }
 

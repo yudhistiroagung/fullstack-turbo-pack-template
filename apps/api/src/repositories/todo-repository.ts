@@ -24,8 +24,8 @@ export class TodoRepository {
     return docs.map((doc) => this.parseDoc(doc));
   }
 
-  async getTodoById(id: string): Promise<TodoType | null> {
-    const doc = await this.collection.findOne({ _id: new ObjectId(id) });
+  async getTodoById(id: string, userId: string): Promise<TodoType | null> {
+    const doc = await this.collection.findOne({ _id: new ObjectId(id), userId });
     if (!doc) return null;
     return this.parseDoc(doc);
   }
@@ -42,13 +42,13 @@ export class TodoRepository {
     return this.parseDoc(doc);
   }
 
-  async updateTodo(id: string, fields: UpdateTodoDTO, userId?: string): Promise<TodoType | null> {
-    await this.collection.updateOne(
-      { _id: new ObjectId(id), ...(userId ? { userId } : {}) },
+  async updateTodo(id: string, fields: UpdateTodoDTO, userId: string): Promise<TodoType | null> {
+    const result = await this.collection.findOneAndUpdate(
+      { _id: new ObjectId(id), userId },
       { $set: { ...fields, updatedAt: new Date() } },
+      { returnDocument: 'after' },
     );
-    const doc = await this.collection.findOne({ _id: new ObjectId(id) });
-    if (!doc) return null;
-    return this.parseDoc(doc);
+    if (!result) return null;
+    return this.parseDoc(result);
   }
 }

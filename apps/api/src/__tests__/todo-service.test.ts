@@ -53,13 +53,13 @@ describe('TodoService', () => {
   });
 
   describe('getTodoById', () => {
-    it('should return a todo DTO by id', async () => {
+    it('should return a todo DTO by id and userId', async () => {
       const todo = makeTodo({ _id: 'abc' });
       vi.mocked(mockRepo.getTodoById).mockResolvedValue(todo);
 
-      const result = await service.getTodoById('abc');
+      const result = await service.getTodoById('abc', 'user1');
 
-      expect(mockRepo.getTodoById).toHaveBeenCalledWith('abc');
+      expect(mockRepo.getTodoById).toHaveBeenCalledWith('abc', 'user1');
       expect(result).not.toBeNull();
       expect(result!._id).toBe('abc');
       expect(typeof result!.createdAt).toBe('string');
@@ -68,7 +68,7 @@ describe('TodoService', () => {
     it('should return null when todo not found', async () => {
       vi.mocked(mockRepo.getTodoById).mockResolvedValue(null);
 
-      const result = await service.getTodoById('nonexistent');
+      const result = await service.getTodoById('nonexistent', 'user1');
 
       expect(result).toBeNull();
     });
@@ -92,9 +92,9 @@ describe('TodoService', () => {
       const todo = makeTodo({ _id: 'abc', status: 'done' });
       vi.mocked(mockRepo.updateTodo).mockResolvedValue(todo);
 
-      const result = await service.updateTodo('abc', { status: 'done' });
+      const result = await service.updateTodo('abc', { status: 'done' }, 'user1');
 
-      expect(mockRepo.updateTodo).toHaveBeenCalledWith('abc', { status: 'done' });
+      expect(mockRepo.updateTodo).toHaveBeenCalledWith('abc', { status: 'done' }, 'user1');
       expect(result).not.toBeNull();
       expect(result!.status).toBe('done');
     });
@@ -102,7 +102,7 @@ describe('TodoService', () => {
     it('should return null when todo not found', async () => {
       vi.mocked(mockRepo.updateTodo).mockResolvedValue(null);
 
-      const result = await service.updateTodo('nonexistent', { name: 'x' });
+      const result = await service.updateTodo('nonexistent', { name: 'x' }, 'user1');
 
       expect(result).toBeNull();
     });

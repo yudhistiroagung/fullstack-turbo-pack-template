@@ -18,8 +18,8 @@ export class TodoService {
     return todos.map(toTodoDTO);
   }
 
-  async getTodoById(id: string): Promise<TodoDTO | null> {
-    const todo = await this.repository.getTodoById(id);
+  async getTodoById(id: string, userId: string): Promise<TodoDTO | null> {
+    const todo = await this.repository.getTodoById(id, userId);
     if (!todo) return null;
     return toTodoDTO(todo);
   }
@@ -29,8 +29,8 @@ export class TodoService {
     return toTodoDTO(todo);
   }
 
-  async updateTodo(id: string, fields: UpdateTodoDTO): Promise<TodoDTO | null> {
-    const todo = await this.repository.updateTodo(id, fields);
+  async updateTodo(id: string, fields: UpdateTodoDTO, userId: string): Promise<TodoDTO | null> {
+    const todo = await this.repository.updateTodo(id, fields, userId);
     if (!todo) return null;
     return toTodoDTO(todo);
   }

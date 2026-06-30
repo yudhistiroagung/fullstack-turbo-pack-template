@@ -15,13 +15,11 @@ export const updateTodoHandler = async (c: Context) => {
     return c.json({ error: 'No fields to update' }, 400);
   }
 
-  // Check ownership: get the todo and verify it belongs to the user
-  const existing = await todoService.getTodoById(id);
-  if (!existing || existing.userId !== userId) {
+  const todo = await todoService.updateTodo(id, data, userId);
+
+  if (!todo) {
     return c.json({ error: 'Todo not found' }, 404);
   }
-
-  const todo = await todoService.updateTodo(id, data);
 
   return c.json(todo);
 };
