@@ -1,18 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { config } from '@/config';
-import { authClient } from '@/lib/auth-client';
+
 import { TodoDTO, fromTodoDTO, type Todo } from '@repo/shared-models';
 
+import { authClient } from '@/lib/auth-client';
+import { api } from '@/lib/api-client';
+
 async function createTodo(name: string): Promise<Todo> {
-  const res = await fetch(`${config.apiUrl}/api/todos`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name }),
-    credentials: 'include',
-  });
-  if (!res.ok) throw new Error('Failed to create todo');
-  const data = await res.json();
-  const dto = TodoDTO.parse(data);
+  const res = await api.post('/api/todos', { name });
+  const dto = TodoDTO.parse(res.data);
   return fromTodoDTO(dto);
 }
 
