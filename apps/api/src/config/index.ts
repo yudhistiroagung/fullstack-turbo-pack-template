@@ -1,27 +1,7 @@
-const ENV = process.env;
+import { getString as getStr, getInt as getIntNum } from '@repo/shared-utils';
 
-const getString = (key: string) => {
-  const value = ENV[key];
-  if (typeof value === 'string') {
-    return value;
-  }
-
-  throw new Error(`ENV ${key} is not a string`);
-};
-
-const getInt = (key: string) => {
-  const raw = ENV[key];
-  if (typeof raw !== 'string') {
-    throw new Error(`ENV ${key} is not a string`);
-  }
-
-  const value = Number.parseInt(raw, 10);
-  if (Number.isNaN(value)) {
-    throw new Error(`ENV ${key} is not a valid integer`);
-  }
-
-  return value;
-};
+const getString = (key: string) => getStr(process.env, key);
+const getInt = (key: string) => getIntNum(process.env, key);
 
 export default {
   name: 'api',
